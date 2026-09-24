@@ -319,20 +319,13 @@ img{display:block;max-width:100%}
 .experience-meta{
   display:grid;
   justify-items:end;
-  gap:6px;
+  gap:2px;
 }
 .experience-duration{
-  display:inline-flex;
-  align-items:center;
-  min-height:24px;
-  padding:4px 9px;
-  border:1px solid color-mix(in srgb,var(--line) 45%,var(--accent));
-  border-radius:999px;
-  background:color-mix(in srgb,var(--surface) 82%,var(--accent));
-  color:var(--accent);
-  font-size:12px;
-  font-weight:700;
-  line-height:1;
+  color:var(--muted);
+  font-size:14px;
+  font-weight:400;
+  line-height:1.6;
   white-space:nowrap;
 }
 .experience-body{
