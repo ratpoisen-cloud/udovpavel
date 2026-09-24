@@ -39,65 +39,33 @@ body{
 
 ::selection{background:var(--accent);color:var(--bg)}
 
-.cursor-dot,.cursor-ring{
+.cursor-arrow{
   position:fixed;
   top:0;
   left:0;
   z-index:300;
+  width:25px;
+  height:25px;
   pointer-events:none;
   opacity:0;
+  color:var(--accent);
+  filter:drop-shadow(0 2px 3px color-mix(in srgb,var(--text) 18%,transparent));
   transform:translate3d(-50%,-50%,0);
-  transition:opacity .25s ease,width .3s var(--ease),height .3s var(--ease),background .3s ease,border-color .3s ease,color .3s ease;
+  transition:opacity .2s ease,color .25s ease,scale .3s var(--ease);
+  will-change:transform;
 }
-.cursor-dot{
-  width:5px;
-  height:5px;
-  border-radius:1px;
-  background:var(--accent);
-  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 10%,transparent);
-}
-.cursor-ring{
-  width:32px;
-  height:32px;
-  border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);
-  border-radius:2px;
-  background:
-    linear-gradient(var(--accent),var(--accent)) left top/8px 1px no-repeat,
-    linear-gradient(var(--accent),var(--accent)) left top/1px 8px no-repeat,
-    linear-gradient(var(--accent),var(--accent)) right top/8px 1px no-repeat,
-    linear-gradient(var(--accent),var(--accent)) right top/1px 8px no-repeat,
-    linear-gradient(var(--accent),var(--accent)) left bottom/8px 1px no-repeat,
-    linear-gradient(var(--accent),var(--accent)) left bottom/1px 8px no-repeat,
-    linear-gradient(var(--accent),var(--accent)) right bottom/8px 1px no-repeat,
-    linear-gradient(var(--accent),var(--accent)) right bottom/1px 8px no-repeat;
-  opacity:.9;
-}
-.cursor-ring::before,.cursor-ring::after{
-  content:"";
-  position:absolute;
-  background:color-mix(in srgb,var(--accent) 35%,transparent);
-}
-.cursor-ring::before{left:50%;top:8px;bottom:8px;width:1px;transform:translateX(-50%)}
-.cursor-ring::after{top:50%;left:8px;right:8px;height:1px;transform:translateY(-50%)}
-.cursor-ready .cursor-dot,.cursor-ready .cursor-ring{opacity:1}
+.cursor-arrow svg{display:block;width:100%;height:100%;fill:currentColor;stroke:var(--bg);stroke-width:.7;stroke-linejoin:round}
+.cursor-ready .cursor-arrow{opacity:1}
 @media (pointer:fine) and (min-width:901px){
   html.cursor-ready,html.cursor-ready *{cursor:none}
 }
-.cursor-ready .cursor-ring.is-hover{
-  width:48px;
-  height:48px;
-  border-color:var(--accent);
-  background-color:color-mix(in srgb,var(--accent) 8%,transparent);
-}
-.cursor-ready .cursor-ring.is-hover::before{top:10px;bottom:10px}
-.cursor-ready .cursor-ring.is-hover::after{left:10px;right:10px}
-.cursor-ready .cursor-dot.is-hover{width:4px;height:4px;background:var(--text);box-shadow:0 0 0 4px color-mix(in srgb,var(--text) 10%,transparent)}
+.cursor-arrow.is-hover{color:var(--text);scale:1.12}
 @media (pointer:coarse),(max-width:900px){
-  .cursor-dot,.cursor-ring{display:none!important}
+  .cursor-arrow{display:none!important}
   html{cursor:auto!important}
 }
 @media (prefers-reduced-motion:reduce){
-  .cursor-dot,.cursor-ring{display:none!important}
+  .cursor-arrow{display:none!important}
   html{cursor:auto!important}
 }
 
