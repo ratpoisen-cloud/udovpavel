@@ -5,6 +5,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
   initYear();
+  initCursor();
   initHeader();
   initMobileMenu();
   initThemeToggle();
@@ -19,6 +20,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initYear() {
   $('#year').textContent = new Date().getFullYear();
+}
+
+function initCursor() {
+  const dot = $('.cursor-dot'), ring = $('.cursor-ring');
+  if (!dot || !ring || reduceMotion || !matchMedia('(pointer:fine)').matches) return;
+  let x = -50, y = -50, ringX = -50, ringY = -50;
+  let visible = false, hovered = false, raf = 0;
+  document.documentElement.classList.add('cursor-ready');
+  const interactive = 'a,button,[role="button"],.s-item';
+  const draw = () => {
+    x += (pointerX - x) * .32;
+    y += (pointerY - y) * .32;
+    ringX += ((hovered ? targetX : pointerX) - ringX) * .16;
+    ringY += ((hovered ? targetY : pointerY) - ringY) * .16;
+    dot.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
+    ring.style.transform = `translate3d(${ringX}px,${ringY}px,0) translate(-50%,-50%)`;
+    raf = requestAnimationFrame(draw);
+  };
+  let pointerX = 0, pointerY = 0, targetX = 0, targetY = 0;
+  dot.style.opacity = '0';
+  ring.style.opacity = '0';
+  const move = e => {
+    pointerX = e.clientX;
+    pointerY = e.clientY;
+    if (!visible) {
+      x = pointerX;
+      y = pointerY;
+      ringX = pointerX;
+      ringY = pointerY;
+      visible = true;
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+    }
+    const target = e.target.closest(interactive);
+    hovered = !!target;
+    dot.classList.toggle('is-hover', hovered);
+    ring.classList.toggle('is-hover', hovered);
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      targetX = rect.left + rect.width / 2;
+      targetY = rect.top + rect.height / 2;
+    }
+  };
+  addEventListener('pointermove', move, { passive: true });
+  addEventListener('pointerleave', () => { visible = false; dot.style.opacity = '0'; ring.style.opacity = '0'; });
+  addEventListener('blur', () => { visible = false; dot.style.opacity = '0'; ring.style.opacity = '0'; });
+  draw();
+  addEventListener('pagehide', () => cancelAnimationFrame(raf), { once: true });
 }
 
 function initHeader() {
