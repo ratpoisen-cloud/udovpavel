@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initYear();
   initMobileMenu();
   initThemeToggle();
+  initAvatarRotation();
   initGallery();
   initToTop();
 });
@@ -43,6 +44,26 @@ function initThemeToggle() {
     document.documentElement.dataset.theme = cur;
     localStorage.setItem('cv-theme', cur);
   };
+}
+
+function initAvatarRotation() {
+  const photo = $('#profilePhoto');
+  if (!photo) return;
+  const photos = [
+    'avatars/photo_2026-09-22%2012.16.15.jpeg',
+    'avatars/photo_2026-09-22%2012.16.17.jpeg',
+    'avatars/photo_2026-09-22%2012.20.36.jpeg'
+  ];
+  let index = 0;
+  setInterval(() => {
+    index = (index + 1) % photos.length;
+    photo.classList.add('is-changing');
+    setTimeout(() => {
+      photo.src = photos[index];
+      photo.alt = 'Удов Павел';
+      photo.classList.remove('is-changing');
+    }, 220);
+  }, 5000);
 }
 
 /* наверх */
