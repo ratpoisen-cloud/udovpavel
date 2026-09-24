@@ -151,6 +151,18 @@ img{display:block;max-width:100%}
   letter-spacing:-.03em;
   font-weight:800;
 }
+.typewriter-line{position:relative;min-height:1.1em}
+.typewriter-line.is-typing::after{
+  content:"";
+  display:inline-block;
+  width:2px;
+  height:.9em;
+  margin-left:4px;
+  vertical-align:-.08em;
+  background:var(--accent);
+  animation:type-caret 1s steps(1) infinite;
+}
+@keyframes type-caret{50%{opacity:0}}
 .hero-copy h2{
   margin:12px 0 0;
   font-size:clamp(17px,2.2vw,21px);
