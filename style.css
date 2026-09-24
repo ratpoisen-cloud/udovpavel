@@ -316,6 +316,25 @@ img{display:block;max-width:100%}
   font-size:14px;
   white-space:nowrap;
 }
+.experience-meta{
+  display:grid;
+  justify-items:end;
+  gap:6px;
+}
+.experience-duration{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:4px 9px;
+  border:1px solid color-mix(in srgb,var(--line) 45%,var(--accent));
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 82%,var(--accent));
+  color:var(--accent);
+  font-size:12px;
+  font-weight:700;
+  line-height:1;
+  white-space:nowrap;
+}
 .experience-body{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -589,6 +608,7 @@ img{display:block;max-width:100%}
   .experience-body{grid-template-columns:1fr}
   .experience-header{grid-template-columns:1fr;gap:8px}
   .experience-header time{white-space:normal}
+  .experience-meta{justify-items:start}
   .speaking-layout{grid-template-columns:1fr}
   .speaking-images{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr;gap:24px}
