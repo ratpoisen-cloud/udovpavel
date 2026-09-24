@@ -5,7 +5,6 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
   initYear();
-  initCursor();
   initHeader();
   initMobileMenu();
   initThemeToggle();
@@ -20,47 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initYear() {
   $('#year').textContent = new Date().getFullYear();
-}
-
-function initCursor() {
-  const cursor = $('.cursor-arrow');
-  if (!cursor || reduceMotion || !matchMedia('(pointer:fine)').matches) return;
-  let x = -50, y = -50;
-  let visible = false, hovered = false, raf = 0;
-  let pointerX = 0, pointerY = 0, targetX = 0, targetY = 0;
-  document.documentElement.classList.add('cursor-ready');
-  const interactive = 'a,button,[role="button"],.s-item';
-  const draw = () => {
-    const desiredX = hovered ? targetX : pointerX;
-    const desiredY = hovered ? targetY : pointerY;
-    x += (desiredX - x) * (hovered ? .2 : .34);
-    y += (desiredY - y) * (hovered ? .2 : .34);
-    cursor.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
-    raf = requestAnimationFrame(draw);
-  };
-  const move = e => {
-    pointerX = e.clientX;
-    pointerY = e.clientY;
-    if (!visible) {
-      x = pointerX;
-      y = pointerY;
-      visible = true;
-      cursor.style.opacity = '1';
-    }
-    const target = e.target.closest(interactive);
-    hovered = !!target;
-    cursor.classList.toggle('is-hover', hovered);
-    if (target) {
-      const rect = target.getBoundingClientRect();
-      targetX = rect.left + rect.width / 2;
-      targetY = rect.top + rect.height / 2;
-    }
-  };
-  addEventListener('pointermove', move, { passive: true });
-  addEventListener('pointerleave', () => { visible = false; cursor.style.opacity = '0'; });
-  addEventListener('blur', () => { visible = false; cursor.style.opacity = '0'; });
-  draw();
-  addEventListener('pagehide', () => cancelAnimationFrame(raf), { once: true });
 }
 
 function initHeader() {
@@ -142,7 +100,7 @@ function initTypewriter() {
 }
 
 function initReveal() {
-  const elements = $$('.hero-copy > *, .hero-photo, .section-heading, .scope-item, .experience-item, .competency-group, .s-item, .edu-item, .contact-grid');
+  const elements = $$('.hero-copy > *, .hero-photo, .section-heading, .scope-item, .experience-item, .s-item, .edu-item, .contact-grid');
   if (!elements.length) return;
   if (reduceMotion || !('IntersectionObserver' in window)) {
     elements.forEach(el => el.classList.add('is-visible'));
