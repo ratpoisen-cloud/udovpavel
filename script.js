@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initThemeToggle();
   initAvatarRotation();
+  initTypewriter();
   initReveal();
   initCounters();
   initActiveNav();
@@ -73,6 +74,29 @@ function initAvatarRotation() {
     next.classList.add('is-active');
   };
   setInterval(showNext, 5000);
+}
+
+function initTypewriter() {
+  const lines = $$('.typewriter-line');
+  if (!lines.length) return;
+  if (reduceMotion) {
+    lines.forEach(line => { line.textContent = line.dataset.typewriter; });
+    return;
+  }
+  const typeLine = (line, delay) => {
+    const text = line.dataset.typewriter;
+    let index = 0;
+    line.textContent = '';
+    line.classList.add('is-typing');
+    const tick = () => {
+      line.textContent = text.slice(0, index);
+      index += 1;
+      if (index <= text.length) setTimeout(tick, line.classList.contains('hero-role') ? 28 : 42);
+      else line.classList.remove('is-typing');
+    };
+    setTimeout(tick, delay);
+  };
+  lines.forEach((line, index) => typeLine(line, 180 + index * 900));
 }
 
 function initReveal() {
