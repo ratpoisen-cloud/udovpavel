@@ -39,36 +39,6 @@ body{
 
 ::selection{background:var(--accent);color:var(--bg)}
 
-.cursor-arrow{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:300;
-  width:25px;
-  height:25px;
-  pointer-events:none;
-  opacity:0;
-  color:var(--accent);
-  filter:drop-shadow(0 2px 3px color-mix(in srgb,var(--text) 18%,transparent));
-  transform:translate3d(-50%,-50%,0);
-  transition:opacity .2s ease,color .25s ease,scale .3s var(--ease);
-  will-change:transform;
-}
-.cursor-arrow svg{display:block;width:100%;height:100%;fill:currentColor;stroke:var(--bg);stroke-width:.7;stroke-linejoin:round}
-.cursor-ready .cursor-arrow{opacity:1}
-@media (pointer:fine) and (min-width:901px){
-  html.cursor-ready,html.cursor-ready *{cursor:none}
-}
-.cursor-arrow.is-hover{color:var(--text);scale:1.12}
-@media (pointer:coarse),(max-width:900px){
-  .cursor-arrow{display:none!important}
-  html{cursor:auto!important}
-}
-@media (prefers-reduced-motion:reduce){
-  .cursor-arrow{display:none!important}
-  html{cursor:auto!important}
-}
-
 .container{
   width:min(calc(100% - 48px), var(--max-width));
   margin-inline:auto;
@@ -388,41 +358,6 @@ img{display:block;max-width:100%}
   font-size:15px;
 }
 
-/* ——— competencies ——— */
-.competencies-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:1px;
-  background:var(--line);
-  border:1px solid var(--line);
-  border-radius:var(--radius-l);
-  overflow:hidden;
-}
-.competency-group{background:var(--surface);padding:28px;transition:background .3s ease,transform .3s var(--ease)}
-.competency-group:hover{background:color-mix(in srgb,var(--surface) 94%,var(--accent));transform:translateY(-2px)}
-.competency-group h3{
-  margin:0 0 14px;
-  font-size:15px;
-  font-weight:700;
-  letter-spacing:-.01em;
-}
-.competency-group ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
-.competency-group li{
-  position:relative;
-  padding-left:18px;
-  font-size:14.5px;
-  color:var(--muted);
-}
-.competency-group li::before{
-  content:"";
-  position:absolute;
-  left:2px;
-  top:.62em;
-  width:6px;height:6px;
-  border-radius:50%;
-  background:var(--accent);
-}
-
 /* ——— speaking ——— */
 .speaking-layout{
   display:grid;
@@ -654,7 +589,6 @@ img{display:block;max-width:100%}
   .experience-body{grid-template-columns:1fr}
   .experience-header{grid-template-columns:1fr;gap:8px}
   .experience-header time{white-space:normal}
-  .competencies-grid{grid-template-columns:1fr}
   .speaking-layout{grid-template-columns:1fr}
   .speaking-images{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr;gap:24px}
