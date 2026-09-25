@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initMobileMenu();
   initThemeToggle();
-  initAvatarRotation();
+  initPrint();
   initTypewriter();
   initReveal();
   initCounters();
@@ -60,20 +60,19 @@ function initThemeToggle() {
   };
 }
 
-function initAvatarRotation() {
-  const container = $('#profilePhoto');
-  if (!container) return;
-  const photos = $$('.avatar-slide', container);
-  if (photos.length < 2 || reduceMotion) return;
-  let index = 0;
-  const showNext = () => {
-    const previous = photos[index];
-    index = (index + 1) % photos.length;
-    const next = photos[index];
-    previous.classList.remove('is-active');
-    next.classList.add('is-active');
+function initPrint() {
+  const btn = $('#printBtn');
+  const finishTypewriter = () => {
+    $$('.typewriter-line').forEach(line => {
+      line.textContent = line.dataset.typewriter;
+      line.classList.remove('is-typing');
+    });
   };
-  setInterval(showNext, 5000);
+  if (btn) btn.onclick = () => {
+    finishTypewriter();
+    window.print();
+  };
+  addEventListener('beforeprint', finishTypewriter);
 }
 
 function initTypewriter() {
