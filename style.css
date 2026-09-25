@@ -107,17 +107,17 @@ img{display:block;max-width:100%}
 .print-btn{
   display:grid;
   place-items:center;
-  width:29px;
-  height:29px;
-  border:1px solid transparent;
-  border-radius:8px;
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  border-radius:50%;
   background:transparent;
   color:var(--text);
   cursor:pointer;
-  transition:transform .3s var(--ease),border-color .3s ease,background .3s ease;
+  transition:opacity .2s ease;
 }
-.print-btn:hover{transform:translateY(-2px);border-color:var(--line);background:var(--surface)}
-.print-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.print-btn:hover{opacity:.65}
+.print-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .header-platforms{display:flex;align-items:center;gap:5px;padding-right:9px;border-right:1px solid var(--line)}
 .header-platform{
   display:grid;
@@ -646,7 +646,7 @@ img{display:block;max-width:100%}
   .burger{display:flex}
   .header-platforms{gap:3px;padding-right:5px}
   .header-platform{width:27px;height:27px}
-  .print-btn{width:27px;height:27px}
+  .print-btn{width:32px;height:32px}
   .site-header__inner{gap:12px}
   .header-platform--hh{letter-spacing:0}
 }
@@ -674,8 +674,8 @@ img{display:block;max-width:100%}
   .header-platforms{gap:2px;padding-right:4px}
   .header-platform{width:25px;height:25px;border-radius:7px}
   .header-platform svg{width:14px;height:14px}
-  .print-btn{width:25px;height:25px;border-radius:7px}
-  .print-btn svg{width:14px;height:14px}
+  .print-btn{width:32px;height:32px}
+  .print-btn svg{width:15px;height:15px}
   .theme-btn{width:32px;height:32px}
   .header-platform--hh{letter-spacing:0}
 }
