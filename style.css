@@ -114,12 +114,13 @@ img{display:block;max-width:100%}
 .main-nav a.is-active::after{transform:scaleX(1);transform-origin:left}
 .main-nav a:hover{color:var(--text);opacity:1}
 .main-nav a.is-active{color:var(--text);opacity:1}
-.site-header__actions{display:flex;align-items:center;gap:8px}
+.site-header__actions{display:flex;align-items:center;gap:4px}
 .print-btn{
   display:grid;
   place-items:center;
   width:29px;
   height:29px;
+  padding:0;
   border:1px solid transparent;
   border-radius:8px;
   background:var(--text);
@@ -129,7 +130,7 @@ img{display:block;max-width:100%}
 }
 .print-btn:hover{opacity:1;transform:translateY(-2px);border-color:var(--line)}
 .print-btn svg{display:block;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.header-platforms{display:flex;align-items:center;gap:5px;padding-right:9px;border-right:1px solid var(--line)}
+.header-platforms{display:flex;align-items:center;gap:4px;padding-right:6px;margin-right:2px;border-right:1px solid var(--line)}
 .header-platform{
   display:grid;
   place-items:center;
@@ -687,7 +688,6 @@ img{display:block;max-width:100%}
   }
   .main-nav.open{display:flex}
   .burger{display:flex}
-  .header-platforms{gap:3px;padding-right:5px}
   .header-platform{width:27px;height:27px}
   .print-btn{width:27px;height:27px}
   .site-header__inner{gap:12px}
@@ -714,7 +714,6 @@ img{display:block;max-width:100%}
   .speaking-images{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr;gap:24px}
   .facts-list{gap:28px}
-  .header-platforms{gap:2px;padding-right:4px}
   .header-platform{width:25px;height:25px;border-radius:7px}
   .header-platform svg{width:14px;height:14px}
   .print-btn{width:25px;height:25px}
