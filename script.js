@@ -68,11 +68,25 @@ function initPrint() {
       line.classList.remove('is-typing');
     });
   };
+  const footerPrintBtn = $('.footer-print-btn');
+  const finalizeCounters = () => {
+    $$('.fact strong, .speaking-number').forEach(el => {
+      const end = el.dataset.count || el.textContent.replace(/[^\d]/g, '');
+      const suffix = el.textContent.replace(/[\d\s]/g, '');
+      el.textContent = end + suffix;
+    });
+  };
   if (btn) btn.onclick = () => {
     finishTypewriter();
+    finalizeCounters();
     window.print();
   };
-  addEventListener('beforeprint', finishTypewriter);
+  if (footerPrintBtn) footerPrintBtn.onclick = () => {
+    finishTypewriter();
+    finalizeCounters();
+    window.print();
+  };
+  addEventListener('beforeprint', () => { finishTypewriter(); finalizeCounters(); });
 }
 
 function initTypewriter() {
