@@ -630,6 +630,7 @@ img{display:block;max-width:100%}
   .scope-label{font-size:7pt!important;margin-bottom:1.5mm!important}
   .scope-item strong{font-size:9pt!important}
   .experience-item{padding:4mm 0!important;break-inside:avoid}
+  .experience-item.experience-item--featured{break-inside:auto!important;page-break-inside:auto!important}
   .experience-item:first-of-type{padding-top:0!important}
   .experience-item--featured{padding:5mm 0!important}
   .experience-header{grid-template-columns:1fr auto!important;gap:1mm 5mm!important;margin-bottom:2.5mm!important}
@@ -664,7 +665,7 @@ img{display:block;max-width:100%}
   .site-footer__inner{font-size:8pt!important;padding:0!important}
   a{color:inherit!important;opacity:1!important}
   .section-heading,.experience-header,.contact-links{break-inside:avoid;break-after:avoid}
-  .experience-item,.edu-item,.scope-item,.contact-grid{break-inside:avoid}
+  .edu-item,.scope-item,.contact-grid{break-inside:avoid}
 }
 
 /* ——— responsive ——— */
