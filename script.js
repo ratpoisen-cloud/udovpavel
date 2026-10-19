@@ -72,7 +72,7 @@ function initPrint() {
   const finalizeCounters = () => {
     $$('.fact strong, .speaking-number').forEach(el => {
       const end = el.dataset.count || el.textContent.replace(/[^\d]/g, '');
-      const suffix = el.textContent.replace(/[\d\s]/g, '');
+      const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : el.textContent.replace(/[\d\s]/g, '');
       el.textContent = end + suffix;
     });
   };
@@ -143,7 +143,7 @@ function initCounters() {
       const source = el.dataset.count || el.textContent.replace(/[^\d]/g, '');
       const end = Number(source);
       if (!Number.isFinite(end)) return;
-      const suffix = el.textContent.replace(/[\d\s]/g, '');
+      const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : el.textContent.replace(/[\d\s]/g, '');
       const duration = 1800;
       const start = performance.now();
       const tick = now => {
@@ -197,7 +197,7 @@ function initGallery() {
     const img = gItems[lbIndex].querySelector('img');
     lbImg.src = img.src;
     lbImg.alt = img.alt;
-    lbCap.textContent = gItems[lbIndex].querySelector('figcaption')?.textContent || '';
+    lbCap.textContent = gItems[lbIndex].querySelector('figcaption')?.textContent || img.alt || '';
     lbCount.textContent = (lbIndex + 1) + ' / ' + gItems.length;
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
